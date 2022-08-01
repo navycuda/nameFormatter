@@ -32,7 +32,9 @@ const isHonorific = function(name) {
   return false;
 };
 const nameInverter = function(name) {
-  
+  if (name === undefined) {
+    throw new Error(`Error`);
+  }
   // Clean the name of excess spaces and convert to array
   const cleanedName = cleanExcessSpaces(name).split(` `);
   // Get the length of the name array

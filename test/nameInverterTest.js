@@ -43,6 +43,6 @@ describe(`nameInverter(name)`, function() {
   });
   // undefined
   it(`throw an error when name is undefined`, function() {
-    assert.isTrue.throws(nameInverter(undefined), `Error`);
+    assert.throw(nameInverter, Error, `Error`);
   });
 });
