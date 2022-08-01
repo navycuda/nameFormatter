@@ -22,20 +22,39 @@ const cleanExcessSpaces = function(string) {
 };
 const isHonorific = function(name) {
   const honorificTitles = [ `Mr.`, `Mrs.`, `Ms.`, `Dr.` ];
-  for (let h = 0; h < honorificTitles.length; h++) {
-    if (name.contains(honorificTitles[h])) {
-      return true;
+  for (let n = 0; n < name.length; n++) {
+    for (let h = 0; h < honorificTitles.length; h++) {
+      if (name[n] === honorificTitles[h]) {
+        return true;
+      }
     }
   }
   return false;
 };
 const nameInverter = function(name) {
-  const cleanedName = cleanExcessSpaces(name);
-
-
-
-
-  return cleanExcessSpaces(name);
+  
+  // Clean the name of excess spaces and convert to array
+  const cleanedName = cleanExcessSpaces(name).split(` `);
+  // Get the length of the name array
+  const length = cleanedName.length;
+  // Check if the array is honorific
+  const honorific = isHonorific(cleanedName);
+  if (honorific) {
+    if (length === 1) {
+      return ``;
+    } else if (length === 2) {
+      return cleanedName[0] + ` ` + cleanedName[1];
+    } else if (length === 3) {
+      return cleanedName[0] + ` ` + cleanedName[2] + `, ` + cleanedName[1];
+    }
+  }
+  if (length === 1) {
+    return cleanedName[0];
+  }
+  if (length === 2) {
+    return cleanedName[1] + `, ` + cleanedName[0];
+  }
+  return "";
 };
 // Execution
 
